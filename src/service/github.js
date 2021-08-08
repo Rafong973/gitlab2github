@@ -5,6 +5,7 @@ const fs = require('fs');
 const DB = require('../db/index');
 const { createRepo, updateRepoThemeRequest } = require('../api/github');
 const { tableName } = require('../../config/index').sql;
+const { clear } = require('../../config/index');
 
 
 // 获取列表
@@ -53,6 +54,10 @@ const cloneRepo = (item) => {
                 return resolve(error);
             }
             await getRepoInfo(item);
+            if(clear){
+                await shell.exec(`rm -rf ${pwd}/repos/${item.name}`)
+                console.log('本地仓库清除成功');
+            }
             resolve();
         },
         (error) => {
@@ -79,6 +84,7 @@ const getRepoInfo = async (item) => {
             );
         }
         await changeRemote(item);
+        if(con)
         resolve();
     });
 };
