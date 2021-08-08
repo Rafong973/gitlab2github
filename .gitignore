@@ -1,0 +1,13 @@
+.vscode
+yarn.lock
+package.json.lock
+
+repos/*
+
+.DS_store
+
+*.local.*
+*.template.*
+
+24hw.*
+.24hw.*
