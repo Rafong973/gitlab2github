@@ -37,18 +37,16 @@ const cloneRepo = (item) => {
 
                 if (
                     !remote_url
-                )
-                    return resolve();
-                try {
-                    await fs.accessSync(`${pwd}/repos/${name}`)
-                } catch (error) {
-                    await shell.exec(`cd ${pwd}/repos && rm -rf ${name}`);
-                    console.log('准备克隆仓库');
-                    await shell.exec(
-                        `cd ${pwd}/repos && git clone ${remote_url}`
-                    );
-                }
+                ) return resolve();
+            
+                await shell.exec(`cd ${pwd}/repos && rm -rf ${name}`);
+                console.log('准备克隆仓库');
+                await shell.exec(
+                    `cd ${pwd}/repos && git clone ${remote_url}`
+                );
+                
                 await fs.accessSync(`${pwd}/repos/${item.name}`);
+                
             } catch (error) {
                 console.error('克隆过程失败：' + item.name);
                 return resolve(error);
@@ -84,7 +82,6 @@ const getRepoInfo = async (item) => {
             );
         }
         await changeRemote(item);
-        if(con)
         resolve();
     });
 };
