@@ -1,0 +1,26 @@
+{
+	"name": "gitlab2github",
+	"version": "1.0.0",
+	"description": "gitlab迁移github",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"push": "node deploy/push.js",
+		"start": "node deploy/run.js",
+		"cp": "cp config.local.js ./config/index.js",
+		"clear": "cp config.template.js ./config/index.js"
+	},
+	"keywords": [
+		"gitlab、github"
+	],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^0.21.1",
+		"curl": "^0.1.4",
+		"knex": "^0.95.9",
+		"mysql": "^2.18.1",
+		"shelljs": "^0.8.4",
+		"socks-proxy-agent": "^6.0.0"
+	}
+}
